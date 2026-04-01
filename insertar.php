@@ -10,16 +10,11 @@ $direccion = $post["Direccion"];
 $celular = $post["Celular"];
 $email = $post["Email"];
 
-$sql = "INSERT INTO alumnos (nombre_apellido, dni, fecha_nac, direccion, celular. correo) 
-    VALUES ('$nombre_apellido', '$dni', '$fecha_nac', '$direccion', '$celular'. '$email')";
+$sql = "INSERT INTO alumnos (nombre_apellido, dni, direccion, fecha_de_nacimiento, celular, correo) VALUES ('$nombre_apellido', '$dni', '$direccion', '$fecha_nac','$celular', '$email')";
 
-if (mysqli_query($conexion, $sql)){
+if (mysqli_query($conexion, $sql)) {
     echo '<h2>¡Registro Exitoso</h2>';
     echo '<a href="index.html">Volver Al Formulario</a>';
-}else{
+} else {
     echo 'Error Al Insertar Datos' . mysqli_error($conexion);
 }
-
-// echo '<pre>';
-// print_r($_POST);
-// echo '</pre>';
