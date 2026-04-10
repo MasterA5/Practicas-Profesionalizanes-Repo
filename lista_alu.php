@@ -40,6 +40,9 @@ $resultado = mysqli_query($conexion, $sql);
                     <td>
                         <a href="eliminar.php?id=<?php echo $fila['id']; ?>">eliminar</a>
                     </td>
+                    <td>
+                        <a href="editar.php?id=<?php echo $fila['id']; ?>">Editar</a>
+                    </td>
                 </tr>
         <?php
             }
