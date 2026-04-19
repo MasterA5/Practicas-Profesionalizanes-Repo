@@ -17,8 +17,7 @@ $result = $conn->query($sql);
 
 <?php while ($data = $result->fetch_assoc()): ?>
 
-<div class="bg-zinc-900 border border-zinc-800 p-4 rounded-xl shadow">
-
+<div class="bg-zinc-900 border border-zinc-800 p-4 rounded-xl shadow border-2">
 
 <!-- 👤 Usuario -->
 <h3 class="text-indigo-400 font-semibold">
