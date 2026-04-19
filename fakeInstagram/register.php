@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 include("db.php");
 include("generate_uuid.php");
 
-// TODO[☑]: Crear un sistema de uuid para identificadores unicos
+// TODO[☑]: Crear un sistema de uuid para identificadores unicos (uuid)
 
 // Traer datos
 $username = trim($_POST['username'] ?? '');
@@ -51,10 +51,10 @@ if ($result->num_rows > 0) {
 // NOTE: ❌ Tampoco el hash debe ser demasiado grande
 $hash = password_hash($password, PASSWORD_DEFAULT);
 
-// Generar uuid para un id mas seguro
+// Generar un uuid para un id mas seguro
 $id = generateUUID();
 
-// Insertar usuario
+// Insertar al usuario
 $sql = "INSERT INTO users (id, username, email, password) VALUES (?, ?, ?, ?)";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("ssss", $id, $username, $email, $hash);
@@ -65,7 +65,7 @@ if ($stmt->execute()) {
     $_SESSION['user_id'] = $id;
     $_SESSION['username'] = $username;
 
-    // Redirigir al index
+    // Redirigir al index.php
     // TODO[☑]: Hacer un render condicional en el index para 
     // No mostrar nada protejido a un usuario no autenticado
     header("Location: index.php");
