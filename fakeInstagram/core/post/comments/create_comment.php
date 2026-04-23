@@ -1,11 +1,11 @@
 <?php
 session_start();
-include("db.php");
-include("generate_uuid.php");
+include("../../db/db.php");
+include("../../extras/generate_uuid.php");
 
 // 🔒 proteger
 if (!isset($_SESSION['user_id'])) {
-    header("Location: index.php");
+    header("Location: ../../index.php");
     exit;
 }
 
@@ -24,9 +24,9 @@ $id = generateUUID();
 $sql = "INSERT INTO comments (id, user_id, post_id, content) VALUES (?, ?, ?, ?)";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("ssss", $id, $user_id, $post_id, $content);
-$stmt->execute();
+$result = $stmt->execute();
 
 // volver
-header("Location: index.php");
+header("Location: ../../../index.php");
 exit;
 ?>

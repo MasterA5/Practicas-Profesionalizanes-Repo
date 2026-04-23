@@ -1,10 +1,10 @@
 <?php
 session_start();
-include("db.php");
+include("../db/db.php");
 
 // Si ya está logueado → Se manda al index
 if (isset($_SESSION['user_id'])) {
-    header("Location: index.php");
+    header("Location: ../../index.php");
     exit;
 }
 
@@ -33,7 +33,7 @@ if ($user && password_verify($password, $user['password'])) {
     $_SESSION['user_id'] = $user['id'];
 
     // Redirigir
-    header("Location: index.php");
+    header("Location: ../../index.php");
     exit;
 
 }

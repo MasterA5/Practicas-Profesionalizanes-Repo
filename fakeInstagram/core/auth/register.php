@@ -3,18 +3,18 @@ session_start();
 
 // 🔒 si ya está logueado, redirigir al login (NOTE: sacado de stack overflow)
 if (isset($_SESSION['user_id'])) {
-    header("Location: index.php");
+    header("Location: ../../index.php");
     exit;
 }
 
 // 🔒 solo permitir POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header("Location: index.php");
+    header("Location: ../../index.php");
     exit;
 }
 
-include("db.php");
-include("generate_uuid.php");
+include("../db/db.php");
+include("../extras/generate_uuid.php");
 
 // TODO[☑]: Crear un sistema de uuid para identificadores unicos (uuid)
 
@@ -68,7 +68,7 @@ if ($stmt->execute()) {
     // Redirigir al index.php
     // TODO[☑]: Hacer un render condicional en el index para 
     // No mostrar nada protejido a un usuario no autenticado
-    header("Location: index.php");
+    header("Location: ../../index.php");
     exit;
 
 } else {

@@ -1,11 +1,11 @@
 <?php
 session_start();
-include("db.php");
-include("generate_uuid.php");
+include("../../db/db.php");
+include("../../extras/generate_uuid.php");
 
 // 🔒 proteger
 if (!isset($_SESSION['user_id'])) {
-    header("Location: index.php");
+    header("Location: ../../index.php");
     exit;
 }
 
@@ -39,6 +39,6 @@ if ($result->num_rows > 0) {
 }
 
 // volver al feed
-header("Location: index.php");
+header("Location: ../../../index.php");
 exit;
 ?>
