@@ -1,10 +1,10 @@
 <?php
 session_start();
-include("db.php");
+include("../../db/db.php");
 
 // 🔒 proteger
 if (!isset($_SESSION['user_id'])) {
-    header("Location: index.php");
+    header("Location: ../../index.php");
     exit;
 }
 
@@ -22,6 +22,6 @@ $stmt->bind_param("ss", $comment_id, $user_id);
 $stmt->execute();
 
 // volver
-header("Location: index.php");
+header("Location: ../../../index.php");
 exit;
 ?>

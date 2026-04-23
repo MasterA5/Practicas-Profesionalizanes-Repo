@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("db.php");
+include("./core/db/db.php");
 
 // NOTE[😢]: Estilos de tailwind generado con IA por falta de experiencia
 
@@ -30,6 +30,7 @@ $logged = isset($_SESSION['user_id']);
     <script src="https://cdn.tailwindcss.com"></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
     <style>
         body {
@@ -55,7 +56,7 @@ $logged = isset($_SESSION['user_id']);
                         Conectado
                     </span>
 
-                    <a href="logout.php"
+                    <a href="./core/auth/logout.php"
                         class="bg-zinc-800 hover:bg-red-600/80 px-3 py-1.5 rounded-lg text-sm transition">
                         Salir
                     </a>
@@ -75,15 +76,32 @@ $logged = isset($_SESSION['user_id']);
             <!-- 📝 Crear post -->
             <!-- 📝 TODO[☑]: Mejorar la tarjeta visual de los posts -->
             <!-- 📝 TODO[⌛]: Agregar mas informacion a los posts (base de datos y html) -->
-            <form action="create_post.php" method="POST">
+            <form action="./core/post/create_post.php" method="POST" enctype="multipart/form-data">
 
                 <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 shadow hover:border-zinc-700 transition">
+
                     <!-- textarea -->
                     <textarea
                         name="content"
                         placeholder="¿Qué estás pensando?"
                         class="w-full bg-transparent text-white placeholder-zinc-500 resize-none focus:outline-none text-sm"
                         rows="3"></textarea>
+
+                    <!-- 📸 input imagen -->
+                    <div class="mt-3">
+                        <input
+                            type="file"
+                            name="image"
+                            accept="image/*"
+                            class="text-xs text-zinc-400 
+                       file:mr-3 file:px-3 file:py-1 
+                       file:rounded-lg file:border-0 
+                       file:bg-indigo-600 file:text-white 
+                       hover:file:bg-indigo-500">
+                    </div>
+
+                    <!-- 🖼 preview -->
+                    <img id="preview" class="mt-3 rounded-xl hidden max-h-60 object-cover">
 
                     <!-- footer -->
                     <div class="flex justify-between items-center mt-3">
@@ -98,6 +116,7 @@ $logged = isset($_SESSION['user_id']);
                             Publicar
                         </button>
                     </div>
+
                 </div>
 
             </form>
@@ -107,7 +126,7 @@ $logged = isset($_SESSION['user_id']);
             <!-- 🔐 Inciar Sesion/Registrar -->
             <!-- 🔐 TODO[⌛]: Mejorar la validacion de los campos de entrada -->
             <!-- 🔐 TODO[⌛]: Hacer Mas extensa el registro del usuario -->
-            <?php include("forms.php"); ?>
+            <?php include("./core/forms/forms.php"); ?>
 
         <?php endif; ?>
 
@@ -115,7 +134,7 @@ $logged = isset($_SESSION['user_id']);
         <!-- 📰 Feed o Publicaciones Solo visibles si el usuario incio session -->
         <!-- 📰 TODO[⌛]: hacer que se pueda ver bien la informacion del ususario que publico el post -->
         <?php if (isset($_SESSION['user_id'])): ?>
-            <?php include("feed.php"); ?>
+            <?php include("./core/feed/test.php"); ?>
         <?php endif; ?>
 
     </div>

@@ -26,7 +26,7 @@ $mode = $_GET['mode'] ?? 'register';
     </div>
 
     <!-- 🔐 Form -->
-    <form action="<?= $mode === 'login' ? 'login.php' : 'register.php' ?>" method="post" class="space-y-5">
+    <form action="<?= $mode === 'login' ? './core/auth/login.php' : './core/auth/register.php' ?>" method="post" class="space-y-5">
 
         <!-- USERNAME -->
         <div>

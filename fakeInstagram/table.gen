@@ -9,6 +9,7 @@ CREATE TABLE users (
 CREATE TABLE posts (
     id VARCHAR(100),
     user_id VARCHAR(128),
+    image TEXT,
     content TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
